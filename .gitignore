@@ -1,0 +1,28 @@
+# First exclude any directories or files
+*
+# Then include all directories
+!*/
+# Include .gitignore
+!.gitignore
+
+# Whitelist files to track
+
+# Xilinx Vivado Project
+!*/*.xpr
+
+# Verilog Source
+!*/*.v
+
+# Constraints
+!*/*.xdc
+
+# IP core
+!*.xci
+!*.coe
+
+# Bitstream
+!*.bit
+
+# Documentation
+!*.md
+!docs/**
