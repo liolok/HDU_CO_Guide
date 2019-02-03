@@ -1,17 +1,18 @@
 # 开发环境
 
-[Xilinx Vivado](https://www.xilinx.com/products/design-tools/vivado.html) 2018.3 (64-bit)，版本：Vivado HL WebPACK
+[Xilinx Vivado](https://www.xilinx.com/products/design-tools/vivado.html) WebPACK 2018.3 (64-bit)
 
-> Vivado 项目路径仅支持 ASCII 字符，注意避免使用中文路径。
+> Vivado 项目路径仅支持 ASCII 字符，请注意避免使用中文路径。
 
-代码文件均使用 `UTF-8` 编码及 `LF` 行尾，建议使用第三方编辑器，Vivado 相关配置项：`Tools`/`Settings`/`Text Editor`/`Current Editor`/`Custom Editor`
+## 编辑器
 
-笔者使用的编辑器及其插件：
-- [Visual Studio Code](https://code.visualstudio.com/download)
+代码文件均使用 `UTF-8` 编码及 `LF` 行尾，Vivado 内置编辑器功能十分有限，建议使用第三方编辑器。Vivado 相关配置项：`Tools`/`Settings`/`Text Editor`/`Current Editor`/`Custom Editor`。
+
+推荐使用 [Visual Studio Code](https://code.visualstudio.com/download)，对应的第三方编辑器配置定义：`/path/to/vscode -g [file name]:[line number]`，如`"C:\Users\liolok\AppData\Local\Microsoft VS Code\Code.exe" -g [file name]:[line number]`。
+
+VS Code 相关扩展：
 - [Verilog HDL - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=leafvmaple.verilog)（`*.v`）
 - [Tcl - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=sleutho.tcl)（`*.xdc`）
-
-> VSCode 对应的 Vivado 第三方编辑器配置定义为：`/path/to/vscode -g [file name]:[line number]`，如 `"C:\Users\liolok\AppData\Local\Microsoft VS Code\Code.exe" -g [file name]:[line number]`。
 
 # 实验板卡
 
@@ -21,7 +22,7 @@
 
 # 配置管脚
 
-> Xinlinx reference: [https://www.xilinx.com/support/packagefiles/a7packages/xc7a100tfgg484pkg.txt](https://www.xilinx.com/support/packagefiles/a7packages/xc7a100tfgg484pkg.txt)
+> Xinlinx 官方资料: [https://www.xilinx.com/support/packagefiles/a7packages/xc7a100tfgg484pkg.txt](https://www.xilinx.com/support/packagefiles/a7packages/xc7a100tfgg484pkg.txt)
 
 ## 快速索引
 
@@ -43,8 +44,8 @@
 表格说明：
 
 - `PCB`为电路级别的引脚编号，在[板卡图片](#实验板卡)中已标出对应位置；
-- `Pin`为 FPGA 级别的引脚编号，**约束文件**中配置管脚时需要填写这一项；
-- `Pin Name / Site Type`为芯片级别的引脚名称，前一种命名来自上文中的 Xilinx 官方资料，后一种则来自 Vivado 的 I/O Ports 查询窗口。
+- `Pin`为 FPGA 级别的引脚编号，在**约束文件**中配置管脚时将会填写这一项，如`set_property PACKAGE_PIN T3 [get_ports {sw[32]}]`；
+- `Pin Name / Site Type`为芯片级别的引脚名称，前者出自上文的 Xilinx [官方资料](#配置管脚)，后者出自 Vivado 的 I/O Ports 查询窗口。
 
 > 每个开关上方均对应一个指示灯，用于指示开关当前状态，亮为高电平，灭为低电平。
 
@@ -171,7 +172,7 @@
 
 各段定义参见下图（取自[维基百科](https://zh.wikipedia.org/wiki/七劃管)）：
 
-![七段数码管](./docs/images/7_segment_display.png)
+![七段数码管](docs/images/7_segment_display.png)
 
 段选信号为低电平有效，如数码`0`对应`seg = 8b'0000_0011`（从高到低定义为a, b, c, ... g, dp）。
 
