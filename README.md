@@ -18,7 +18,7 @@ VS Code 相关扩展：
 
 项目生成的比特流文件位于`<project>/<project>.runs/impl_1`，如`01_Test/01_Test.runs/impl_1/Board.bit`。
 
-实验板卡不支持 Vivado 内置的烧录功能，上游为此提供了专门的烧录工具，仅支持 Windows 平台。文件参见：[`docs\BitstreamDownloader.exe`](docs\BitstreamDownloader.exe)。
+由于实验板卡并不支持 Vivado 内置的烧录功能，上游提供了专门的烧录工具，仅支持 Windows 平台。文件参见：[`BitstreamDownloader.exe`](docs/BitstreamDownloader.exe)。
 
 > 如烧录工具无法运行，需安装 Microsoft Visual C++ 可再发行程序包，即微软运行库。推荐下载安装[这个合集](https://tiny.cc/vcredist)，原帖链接：[Visual C++ Redistributables AIO - Repacks.NET](https://repacks.net/viewtopic.php?t=247)。
 
@@ -166,7 +166,7 @@ USB 烧录端口驱动：
 |  DS2  |  M22 | IO_L15N_T2_DQS_ADV_B_15 |
 |  DS3  |  L21 | IO_L10N_T1_AD11N_15     |
 
-`DS3` 为 3-8 译码器即所数码管的使能信号，由`DS2`、`DS1`、`DS0`对 8 位数码管进行片选。如 BCD 码 [DS2, DS1, DS0] 为 `3b'111` 时，对应的十进制为 `7`，表示最左边即最高位数码管被选中并显示一个十六进制数码。
+`DS3`为全部数码管的使能信号，高电平有效；`DS2`、`DS1`、`DS0`通过 3-8 译码对 8 位数码管进行片选。如 [`DS2`, `DS1`, `DS0`] 为 `3b'111` 时，对应的十进制为 `7`，表示最左边即最高位数码管被选中并显示一个十六进制数码。
 
 > 扫描数码管需注意：频率过低时扫描将会肉眼可见（效果同流水灯）；过高则会导致每位数码管分配到的周期太短而供电不足，亮度过低。建议在测试中调整分频因子以获得相对理想的扫描频率。
 
@@ -183,9 +183,9 @@ USB 烧录端口驱动：
 | DS_g  |  H22 | IO_L7N_T1_AD2N_15     |
 | DS_dp |  J21 | IO_L11N_T1_SRCC_15    |
 
-各段定义参见下图（取自[维基百科](https://zh.wikipedia.org/wiki/七劃管)）：
+各划的排序参见下图（取自[维基百科](https://zh.wikipedia.org/wiki/七劃管)）：
 
-![七段数码管](docs/images/7_segment_display.png)
+![七段数码管各划的排序](docs/images/7_segment_display.png "七段数码管各划的排序")
 
 段选信号为低电平有效，如数码`0`对应`seg = 8b'0000_0011`（从高到低定义为a, b, c, ... g, dp）。
 
