@@ -6,7 +6,7 @@
 
 ## 编辑器
 
-代码文件均使用 `UTF-8` 编码及 `LF` 行尾，Vivado 内置编辑器功能十分有限，建议使用第三方编辑器。Vivado 相关配置项：`Tools`/`Settings`/`Text Editor`/`Current Editor`/`Custom Editor`。
+代码文件均使用 `UTF-8` 编码及 `LF` 行尾。Vivado 内置编辑器功能十分有限，建议使用第三方编辑器，相关配置项：`Tools`/`Settings`/`Text Editor`/`Current Editor`/`Custom Editor`。
 
 推荐使用 [Visual Studio Code](https://code.visualstudio.com/download)，对应的第三方编辑器配置定义：`/path/to/vscode -g [file name]:[line number]`，如`"C:\Users\liolok\AppData\Local\Microsoft VS Code\Code.exe" -g [file name]:[line number]`。
 
@@ -14,9 +14,22 @@ VS Code 相关扩展：
 - [Verilog HDL - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=leafvmaple.verilog)（`*.v`）
 - [Tcl - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=sleutho.tcl)（`*.xdc`）
 
+## 比特流烧录
+
+项目生成的比特流文件位于`<project>/<project>.runs/impl_1`，如`01_Test/01_Test.runs/impl_1/Board.bit`。
+
+实验板卡不支持 Vivado 内置的烧录功能，上游为此提供了专门的烧录工具，仅支持 Windows 平台。文件参见：[`docs\BitstreamDownloader.exe`](docs\BitstreamDownloader.exe)。
+
+> 如烧录工具无法运行，需安装 Microsoft Visual C++ 可再发行程序包，即微软运行库。推荐下载安装[这个合集](https://tiny.cc/vcredist)，原帖链接：[Visual C++ Redistributables AIO - Repacks.NET](https://repacks.net/viewtopic.php?t=247)。
+
 # 实验板卡
 
 [Xilinx Artix-7](https://www.xilinx.com/products/silicon-devices/fpga/artix-7.html) xc7a100tfgg484-2L
+
+USB 烧录端口驱动：
+
+- 官方网站：[CH341SER.EXE - 江苏沁恒股份有限公司](http://www.wch.cn/download/CH341SER_EXE.html)
+- 外网备份：[CH340 Drivers for Windows, Mac and Linux](https://sparks.gogo.co.nz/ch340.html)
 
 ![xc7a100tfgg484-2L](docs/images/xc7a100tfgg484-2L.png)
 
