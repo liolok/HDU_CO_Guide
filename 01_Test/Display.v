@@ -17,14 +17,14 @@ module Display(clk, data, which, seg);
 
     reg [3:0] digit; // 片选后的4位二进制数据 => 1位十六进制数码
     always @(*) case (which)
-        0: digit = data[04:01]; // 最低位
-        1: digit = data[08:05];
-        2: digit = data[12:09];
-        3: digit = data[16:13];
-        4: digit = data[20:17];
-        5: digit = data[24:21];
-        6: digit = data[28:25];
-        7: digit = data[32:29]; // 最高位
+        0: digit = data[32:29]; // 最高位
+        1: digit = data[28:25];
+        2: digit = data[24:21];
+        3: digit = data[20:17];
+        4: digit = data[16:13];
+        5: digit = data[12:09];
+        6: digit = data[08:05];
+        7: digit = data[04:01]; // 最低位
     endcase
 
     always @(*) case (digit) // 十六进制数码 => 段选信号（a,b,c,...g,dp）
