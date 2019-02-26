@@ -1,21 +1,17 @@
 `timescale 1ns / 1ps
 // 8位七段数码管扫描显示模块
-module Display(clk, data, which, seg);
+module Display(clk, data, which, seg,
+    count, digit); // 调试接口
     input clk; // 接入系统时钟
     input [32:1] data; // 32位显示数据
-    output reg [2:0] which; // 片选编码（8位中的哪一位）
+    output reg [2:0] which = 0; // 片选编码（8位中的哪一位）
     output reg [7:0] seg; // 段选信号（七段中的哪些笔划）
 
-    integer count = 0; // 分频扫描，循环遍历片选编码。
-    always @(posedge clk) begin
-        count <= count + 1;
-        if (count == 2000) begin
-            which <= which + 1;
-            count <= 0;
-        end
-    end
+    output reg [10:0] count = 0; // 分频扫描，循环遍历片选编码。
+    always @(posedge clk) count <= count + 1'b1;
+    always @(negedge clk) if (&count) which <= which + 1'b1;
 
-    reg [3:0] digit; // 片选后的4位二进制数据 => 1位十六进制数码
+    output reg [3:0] digit; // 片选后的4位二进制数据 => 1位十六进制数码
     always @(*) case (which)
         0: digit = data[32:29]; // 最高位
         1: digit = data[28:25];
@@ -47,4 +43,4 @@ module Display(clk, data, which, seg);
         default: seg = 0; // 数码超出定义范围，全亮。
     endcase
 
-endmodule
+endmodule // Display
