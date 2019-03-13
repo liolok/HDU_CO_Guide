@@ -6,17 +6,14 @@ module Display_Test();
     wire [2:0] which;
     wire [7:0] seg; // output
     wire [10:0] count;
-    wire [3:0] digit; // debug
+    wire [3:0] digit; // output for debug
 
-    Display Display_Instance( // instantiate display module
-        .clk(clk),
-        .data(data),
-        .which(which),
-        .seg(seg),
-        .count(count),
-        .digit(digit));
+    // Instantiate a display module
+    Display Display_Instance(.clk(clk), .data(data),
+        .which(which), .seg(seg),
+        .count(count), .digit(digit));
 
-    always #0.01 clk = ~clk; // 1ns == 1000ps
+    always #0.01 clk = ~clk; // 0.01ns == 10ps
     initial begin
         data = 32'hfedc_ba98; #500;
         data = 32'h7654_3210; #500;
