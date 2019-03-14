@@ -25,4 +25,4 @@
 
 # Documentation
 !*.md
-!docs/**
+!**/docs/**
