@@ -1,16 +1,38 @@
 # 开发环境
 
-[Xilinx Vivado][xilinx] WebPACK 2018.3，安装选项仅需选择 `Artix-7` 设备，最小安装应需将近 12GB 硬盘空间。
+> Xilinx Vivado：[官方中文下载页面][xilinx_vivado]（需注册登录 Xilinx 帐号并填写相应信息进行下载）
 
-> Vivado 项目路径仅支持 ASCII 字符，请注意避免使用中文路径。
+[xilinx_vivado]: https://china.xilinx.com/support/download/index.html/content/xilinx/zh/downloadNav/vivado-design-tools.html
 
-[xilinx]: https://www.xilinx.com/support/download.html "Downloads"
+## 安装方式
 
-## 编辑器
+届时最新的完整版本是 `2018.3`，请结合实际网络情况，选择安装方式：
+
+![安装方式](docs/images/installation_method.png "安装方式")
+
+> 离线安装方式需要将下载好的完整包需要解压并运行其中的 `xsetup` 文件。
+
+## 选择版本
+
+选择 WebPack 版本，免费、无需帐号、无需许可证。
+
+![选择版本](docs/images/select_edition.png "选择版本")
+
+## 选择组件
+
+最小化安装仅需选择“设备”中的 `Artix-7` 型号：
+
+![选择组件](docs/images/select_component.png "选择组件")
+
+> 可以看到，离线安装将占用近 12GB 磁盘空间。如果在线安装，下载所需的安装文件也会在目标目录占用几个 GB 的空间，可在安装完成后手动清理释放。
+
+## 第三方编辑器
 
 代码文件均使用 `UTF-8` 编码及 `LF` 行尾。Vivado 内置编辑器功能十分有限，建议使用第三方编辑器，相关配置项：`Tools`/`Settings`/`Text Editor`/`Current Editor`/`Custom Editor`。
 
 推荐使用 [Visual Studio Code][vscode]，对应的第三方编辑器配置定义：`/path/to/vscode -g [file name]:[line number]`，如 `"C:\Program Files\Microsoft VS Code\Code.exe" -g [file name]:[line number]`。
+
+![第三方文编辑器](docs/images/custom_editor.png "第三方文编辑器")
 
 VS Code 相关扩展：
 - [Verilog HDL 语法高亮][verilog]
@@ -28,7 +50,7 @@ VS Code 相关扩展：
 
 ## 烧录端口驱动
 
-Windows 驱动安装包参见文件 [`CH341SER.EXE`](docs/dependencies/CH341SER.EXE)（[出处][wch]）。
+Windows 驱动安装包参见文件 [CH341SER.EXE](docs/dependencies/CH341SER.EXE)（[出处][wch]）。
 
 [wch]: http://www.wch.cn/download/CH341SER_EXE.html "CH341SER.EXE - 江苏沁恒股份有限公司"
 
@@ -40,7 +62,9 @@ Windows 驱动安装包参见文件 [`CH341SER.EXE`](docs/dependencies/CH341SER.
 
 项目生成的比特流文件位于 `<project>/<project>.runs/impl_1`，如 `01_Test/01_Test.runs/impl_1/Board.bit`。
 
-由于实验板卡并不支持 Vivado 内置的烧录功能，上游提供了专门的烧录工具，仅支持 Windows 平台。文件参见：[`BitstreamDownloader.exe`](docs/BitstreamDownloader.exe)。
+由于实验板卡并不支持 Vivado 内置的烧录功能，上游提供了专门的烧录工具，仅支持 Windows 平台。文件参见：[BitstreamDownloader.exe](docs/BitstreamDownloader.exe)。
+
+![比特流烧录](docs/images/download_bitstream.png "比特流烧录")
 
 > 如烧录工具无法运行，应为缺少相应的微软 VC++ 运行库，可以安装[这个合集](docs/dependencies/VisualCppRedist_AIO_x86_x64.exe)（[出处][vcredist]）。
 
